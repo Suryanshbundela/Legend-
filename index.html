@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legendary Classes — Premium Coaching Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Aleo:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #fff8f0;
+  color: #333;
+}
+
+header {
+  background: #e85d04;
+  color: white;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+#searchBar {
+  padding: 10px;
+  width: 40%;
+  border-radius: 6px;
+  border: none;
+}
+
+.hero {
+  height: 320px;
+  background: url("https://images.unsplash.com/photo-1588072432836-e10032774350") center/cover no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h2 {
+  color: white;
+  font-size: 38px;
+  font-family: Aleo, serif;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.heading {
+  font-family: Aleo, serif;
+  font-size: 28px;
+  color: #e85d04;
+  margin-bottom: 10px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+button {
+  background: #ffba08;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+input {
+  padding: 10px;
+  margin: 6px 0;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Legendary Classes</h1>
+  <input id="searchBar" placeholder="Search anything...">
+</header>
+
+<div class="hero">
+  <div class="hero-overlay">
+    <h2>LEGENDS MAKE THEIR OWN WAY</h2>
+  </div>
+</div>
+
+<section id="about">
+<h2 class="heading">About Us</h2>
+<div class="card">
+Legendary Classes near Mission Compound, Jhansi provides coaching for class 9th–12th (Science & Commerce) and competitive exams SSC, CGL, CUET, NEET, JEE Mains & Advanced.  
+97% success rate • 5+ years experience • 500+ students trained.
+</div>
+</section>
+
+<section id="achievers">
+<h2 class="heading">Achievers</h2>
+<div class="card">Himanshu Gupta — CA Foundation</div>
+<div class="card">Devansh Gupta — District Topper Jhansi (2026)</div>
+<div class="card">Simran Rathore — NDA First Attempt</div>
+<div class="card">Dhruve Rathore — JEE Mains First Attempt</div>
+</section>
+
+<section id="teachers">
+<h2 class="heading">Teachers</h2>
+<div class="card">Suryansh Sir — Director</div>
+<div class="card">Devansh Sir — Accountancy & Business Studies</div>
+<div class="card">Himanshu Sir — Economics</div>
+<div class="card">Dhruv Sir — Physics & Chemistry</div>
+<div class="card">Shiva Sir — Class 9 & 10</div>
+<div class="card">Rajdeep Sir — Biology & English</div>
+</section>
+
+<section id="fees">
+<h2 class="heading">Fee Structure</h2>
+<div class="card">Class 9–10 → ₹1500/month</div>
+<div class="card">Class 11 → ₹600 per subject/month</div>
+<div class="card">Class 12 → ₹900 per subject/month</div>
+</section>
+
+<section id="timing">
+<h2 class="heading">Timing Schedule</h2>
+<div class="card">Class 9–10 → 2 PM – 4 PM</div>
+<div class="card">Class 11–12 → 4 PM – 6 PM</div>
+</section>
+
+<section id="facilities">
+<h2 class="heading">Facilities</h2>
+<div class="card">Doubt Classes</div>
+<div class="card">Digital Classroom</div>
+<div class="card">Weekly Tests</div>
+<div class="card">Specialised Notes</div>
+<div class="card">Library</div>
+</section>
+
+<section id="admission">
+<h2 class="heading">Online Admission</h2>
+<input id="name" placeholder="Student Name">
+<input id="class" placeholder="Class">
+<input id="phone" placeholder="Phone">
+<button onclick="applyAdmission()">Submit Application</button>
+<div id="admissionMsg"></div>
+</section>
+
+<section id="login">
+<h2 class="heading">Student Login</h2>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<div id="loginMsg"></div>
+</section>
+
+<section id="dashboard" class="hidden">
+<h2 class="heading">Student Dashboard</h2>
+<div id="studentInfo"></div>
+<div id="results"></div>
+</section>
+
+<footer>
+Legendary Classes • Jhansi, Uttar Pradesh  
+Phone: 8542016713 • suryanshbundela69@gmail.com
+</footer>
+
+<script>
+/* ===== DATABASE SEED DATA ===== */
+const DB = {
+  users: [
+    {email:"student@legendary.com", password:"1234", name:"Demo Student", role:"student"},
+    {email:"admin@legendary.com", password:"admin123", name:"Admin", role:"admin"}
+  ],
+  admissions: [],
+  results: [
+    {name:"Demo Student", test:"Weekly Test 1", score:92, rank:1}
+  ]
+};
+
+/* ===== SEARCH ===== */
+document.getElementById("searchBar").addEventListener("keyup", function(){
+  const value = this.value.toLowerCase();
+  document.querySelectorAll("section").forEach(sec=>{
+    sec.style.display = sec.innerText.toLowerCase().includes(value) ? "block":"none";
+  });
+});
+
+/* ===== ADMISSION ===== */
+function applyAdmission(){
+  const name = document.getElementById("name").value;
+  const cls = document.getElementById("class").value;
+  const phone = document.getElementById("phone").value;
+
+  DB.admissions.push({name, cls, phone});
+  document.getElementById("admissionMsg").innerText = "Application submitted successfully!";
+}
+
+/* ===== LOGIN ===== */
+function login(){
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const user = DB.users.find(u=>u.email===email && u.password===password);
+
+  if(!user){
+    document.getElementById("loginMsg").innerText="Invalid credentials";
+    return;
+  }
+
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+
+  document.getElementById("studentInfo").innerHTML =
+    "<div class='card'>Welcome " + user.name + "</div>";
+
+  const studentResults = DB.results
+    .filter(r=>r.name===user.name)
+    .map(r=>"<div class='card'>"+r.test+" → Score: "+r.score+" Rank: "+r.rank+"</div>")
+    .join("");
+
+  document.getElementById("results").innerHTML = studentResults;
+}
+</script>
+
+</body>
+</html>
